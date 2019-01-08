@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 // import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 import { DataStorageService } from '../../shared/data-storage.service';
-import { AuthService } from '../../auth/auth.service';
+
 import { AppState } from 'src/app/store/app.reducers';
 import { State as AuthState } from 'src/app/auth/store/auth.reducers';
+import { Logout } from 'src/app/auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private dataStorageService: DataStorageService,
-    private authService: AuthService,
     private store: Store<AppState>
   ) { }
 
@@ -39,6 +39,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.store.dispatch(new Logout());
   }
 }

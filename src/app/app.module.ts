@@ -13,6 +13,9 @@ import { appReducers } from './store/app.reducers';
 
 import { AppComponent } from './app.component';
 
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,12 +23,13 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot(appReducers),
     AppRoutingModule,
     SharedModule,
     ShoppingListModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([AuthEffects])
   ],
   bootstrap: [AppComponent]
 })
